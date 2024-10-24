@@ -44,7 +44,6 @@ const BootcampForm = () => {
           <button type="submit">{bootcampToEdit ? 'Actualizar' : 'Agregar'} Bootcamp</button>
       </form><button onClick={() => { goBack(''); } }><i>arrow_back</i> Ir atras</button></>
   );
-  
 };
 
 export default BootcampForm;
