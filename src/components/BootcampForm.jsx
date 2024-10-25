@@ -9,7 +9,7 @@ const BootcampForm = () => {
   const bootcampToEdit = location.state?.bootcamp; // se toma el bootcamp desde el estado
   const { register, handleSubmit, setValue } = useForm();
   const { createBootcamp, updateBootcamp,goBack } = useAuth();
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJjaGVldG9zIiwiaWF0IjoxNzI5NzY0ODA2LCJleHAiOjE3Mjk3Njg0MDZ9.2kmaiZ8G8nUNr1yp3XubcldLRckf04Z0twQuquQ7q3E';
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJjaGVldG9zIiwiaWF0IjoxNzI5ODIwMzA2LCJleHAiOjE3Mjk4MjM5MDZ9.RkvSohcVX91nAe7G7AKJDlR-mlRCFROVg7Pr_wngu4Q';
 
   useEffect(() => {
     if (bootcampToEdit) {

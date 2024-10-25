@@ -49,6 +49,7 @@ export const Request = ({ children }) => {
       }
 
       const data = await response.json();
+      navigate('/')
       return data;
     } catch (error) {
       console.error('Error al crear bootcamp:', error);
@@ -73,7 +74,9 @@ export const Request = ({ children }) => {
       }
 
       const data = await response.json();
+      navigate('/')
       return data;
+      
     } catch (error) {
       console.error('Error al actualizar bootcamp:', error);
       setErrorMessage('Error al actualizar bootcamp.');

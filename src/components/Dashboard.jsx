@@ -1,30 +1,48 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from './Peticiones/Request';
 import { useNavigate } from 'react-router-dom';
 
-const Dashboard = () => {
-  const { getAllBootcamps, bootcamps, deactivateBootcamp } = useAuth();
-  const navigate = useNavigate();
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJjaGVldG9zIiwiaWF0IjoxNzI5NzY0ODA2LCJleHAiOjE3Mjk3Njg0MDZ9.2kmaiZ8G8nUNr1yp3XubcldLRckf04Z0twQuquQ7q3E';
 
-  // vemos si el token está o neles
-  if (!token) {
-    return <h2>Acceso denegado. Por favor, inicia sesión.</h2>;
-  }
+const Dashboard = () => {
+  const { getAllBootcamps, bootcamps, deactivateBootcamp, loginUser } = useAuth();
+  const navigate = useNavigate();
+  const [token, setToken] = useState(null); // Almacenar el token
+
+
+
+  // Credenciales quemadas 
+  const username = 'cheetos';
+  const password = '123456789';
 
   useEffect(() => {
-    const fetchBootcamps = async () => {
-      await getAllBootcamps(token);
+    const loginAndFetchBootcamps = async () => {
+      try {
+        // Login automático
+        const response = await loginUser(username, password);
+        const token = response.token; 
+        setToken(token);
+
+        // con el token pa'cer la solicitud para obtener los bootcamps
+        if (token) {
+          await getAllBootcamps(token);
+        }
+      } catch (error) {
+        console.error('Error al iniciar sesión y obtener bootcamps:', error);
+      }
     };
 
-    fetchBootcamps();
-  }, [getAllBootcamps, token]);
+    loginAndFetchBootcamps();
+  }, [getAllBootcamps, loginUser]);
 
   const handleDeleteBootcamp = async (id) => {
     if (window.confirm('¿Estás seguro de que deseas eliminar este bootcamp?')) {
-      await deactivateBootcamp(token, id);
+      await deactivateBootcamp(token, id); // se usa el token almacenado
     }
   };
+
+  if (!token) {
+    return <h2>Cargando... Iniciando sesión...</h2>; // Puedes manejar un estado de carga
+  }
 
   return (
     <>
@@ -32,7 +50,7 @@ const Dashboard = () => {
       <button onClick={() => navigate('/bootcamp-form')}>Agregar Bootcamp</button>
 
       <ul>
-      {bootcamps.filter(bootcamp => bootcamp.active === true).map((bootcamp) => (
+        {bootcamps.filter(bootcamp => bootcamp.active === true).map((bootcamp) => (
           <li key={bootcamp.id}>
             <h2>{bootcamp.name}</h2>
             <p>{bootcamp.description}</p>
@@ -45,6 +63,5 @@ const Dashboard = () => {
     </>
   );
 };
-
 
 export default Dashboard;
