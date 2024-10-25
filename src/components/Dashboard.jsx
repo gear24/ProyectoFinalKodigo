@@ -63,25 +63,25 @@ const Dashboard = () => {
   return (
     <>
 
-      <header className=''>
+      <header className='blue-grey10'>
         <nav>
-          <h6 className="max">Bienvenido {loguedName}</h6>
-          <button className="small-round" onClick={() => navigate('/bootcamp-form')}>
+          <h6 className="max ">Bienvenido {loguedName}</h6>
+          <button className="small-round blue-grey2" onClick={() => navigate('/bootcamp-form')}>
             <i>add</i>     
-            <div class="tooltip bottom">Agrega un nuevo bootcamp</div>       
+            <div className="tooltip bottom">Agrega un nuevo bootcamp</div>       
           </button>
-          <button className="small-round" onClick={() => navigate('/bootcamp-form')}>
+          <button className="small-round blue-grey2" onClick={() => navigate('/bootcamp-form')}>
             <i>logout</i>            
-            <div class="tooltip bottom">Cierra sesion</div>
+            <div className="tooltip bottom">Cierra sesion</div>
           </button>
           
         </nav>
       </header>
       <main className="responsive">
 
-        <article class="border  center-align middle-align">
-          <div class="row">
-            <div class="max">
+        <article className="border blue-grey-border  center-align middle-align blue-grey10">
+          <div className="row">
+            <div className="max">
               <h1>Bootcamps</h1>
             </div>
           </div>
@@ -92,17 +92,17 @@ const Dashboard = () => {
 
                   
 
-        <article class=" round border " key={bootcamp.id}>
-          <div class="row">
-            <div class="max">
+        <article className=" round border blue-grey-border blue-grey8" key={bootcamp.id}>
+          <div className="row">
+            <div className="max">
               <h2>{bootcamp.name}</h2>
               <p>{bootcamp.description}</p>
               <p>Tecnologías: {bootcamp.technologies.join(', ')}</p>
             </div>
           </div>
           <nav>
-          <button onClick={() => handleDeleteBootcamp(bootcamp.id)}>Eliminar Bootcamp</button>
-          <button onClick={() => navigate(`/bootcamp-form`, { state: { bootcamp } })}>Editar Bootcamp</button>
+          <button className='blue-grey3 black-text' onClick={() => handleDeleteBootcamp(bootcamp.id)}>Eliminar Bootcamp</button>
+          <button className='blue-grey3 black-text' onClick={() => navigate(`/bootcamp-form`, { state: { bootcamp } })}>Editar Bootcamp</button>
           </nav>
         </article>
           ))}
