@@ -4,46 +4,42 @@ import { useNavigate } from 'react-router-dom';
 import { MutatingDots } from 'react-loader-spinner'; // Importamos el tipo de loader
 
 const Dashboard = () => {
-  const { getAllBootcamps, bootcamps, deactivateBootcamp, loginUser, getDashboardData } = useAuth();
+  const { getAllBootcamps, bootcamps, deactivateBootcamp, getDashboardData } = useAuth();
   const navigate = useNavigate();
-  const [token, setToken] = useState(null); // Verificamos lo del token
   const [loading, setLoading] = useState(true); // Proceso de carga
   const [error, setError] = useState(null); // Estado para manejar mensajes de error
   const [loguedName, setLoguedName] = useState(''); // Estado para almacenar el nombre de usuario
 
-  // Datos de prueba a remover en la versión final
-  const username = 'cheetos';
-  const password = '123456789';
-
   useEffect(() => {
-    const loginAndFetchData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await loginUser(username, password); // Fingimos un logueo
-        const token = response.token;
-        setToken(token); // Asignamos el token
-
-        if (token) {
-          await getAllBootcamps(token);
+        const token = localStorage.getItem('token'); // Obtiene el token del localStorage
+        if (token) { // Solo procede si hay un token
+          await getAllBootcamps(token); // Obtiene los bootcamps con el token proporcionado
           const dashboardData = await getDashboardData(token); // Obtenemos datos del dashboard
           if (dashboardData && dashboardData.userLogin) {
-            setLoguedName(dashboardData.userLogin.username); // seteamos el nombre del login hacia una variable local para referencia
-
+            setLoguedName(dashboardData.userLogin.username); // Seteamos el nombre de usuario logueado
           }
+        } else {
+          setError('No se encontró un token válido.'); // Muestra error si no hay token
         }
       } catch (error) {
-        console.error('Error al iniciar sesión y obtener datos del dashboard:', error);
-        setError('No se pudo iniciar sesión. Por favor, verifica tus credenciales.'); // Establece el mensaje de error
+        console.error('Error al obtener datos del dashboard:', error);
+        setError('Error al obtener datos del dashboard.');
       } finally {
         setLoading(false); // Cambia el estado de carga a false al final
       }
     };
 
-    loginAndFetchData();
-  }, [getAllBootcamps, loginUser, getDashboardData]);
+    fetchData();
+  }, [getAllBootcamps, getDashboardData]);
 
   const handleDeleteBootcamp = async (id) => {
-    if (window.confirm('¿Estás seguro de que deseas eliminar este bootcamp?')) {
-      await deactivateBootcamp(token, id); // El token para borrar
+    const token = localStorage.getItem('token'); // Obtiene el token antes de realizar la acción
+    if (token && window.confirm('¿Estás seguro de que deseas eliminar este bootcamp?')) {
+      await deactivateBootcamp(token, id); // Usa el token para desactivar el bootcamp
+    } else {
+      setError('No se encontró un token válido para eliminar.');
     }
   };
 
@@ -62,7 +58,6 @@ const Dashboard = () => {
 
   return (
     <>
-
       <header className='blue-grey10'>
         <nav>
           <h6 className="max ">Bienvenido {loguedName}</h6>
@@ -70,16 +65,14 @@ const Dashboard = () => {
             <i>add</i>     
             <div className="tooltip bottom">Agrega un nuevo bootcamp</div>       
           </button>
-          <button className="small-round blue-grey2" onClick={() => navigate('/bootcamp-form')}>
+          <button className="small-round blue-grey2" onClick={() => navigate('/logout')}>
             <i>logout</i>            
-            <div className="tooltip bottom">Cierra sesion</div>
+            <div className="tooltip bottom">Cierra sesión</div>
           </button>
-          
         </nav>
       </header>
       <main className="responsive">
-
-        <article className="border blue-grey-border  center-align middle-align blue-grey10">
+        <article className="border blue-grey-border center-align middle-align blue-grey10">
           <div className="row">
             <div className="max">
               <h1>Bootcamps</h1>
@@ -87,27 +80,22 @@ const Dashboard = () => {
           </div>
         </article>
 
-        
-          {bootcamps.filter(bootcamp => bootcamp.active === true).map((bootcamp) => (
-
-                  
-
-        <article className=" round border blue-grey-border blue-grey8" key={bootcamp.id}>
-          <div className="row">
-            <div className="max">
-              <h2>{bootcamp.name}</h2>
-              <p>{bootcamp.description}</p>
-              <p>Tecnologías: {bootcamp.technologies.join(', ')}</p>
+        {bootcamps.filter(bootcamp => bootcamp.active === true).map((bootcamp) => (
+          <article className="round border blue-grey-border blue-grey8" key={bootcamp.id}>
+            <div className="row">
+              <div className="max">
+                <h2>{bootcamp.name}</h2>
+                <p>{bootcamp.description}</p>
+                <p>Tecnologías: {bootcamp.technologies.join(', ')}</p>
+              </div>
             </div>
-          </div>
-          <nav>
-          <button className='blue-grey3 black-text' onClick={() => handleDeleteBootcamp(bootcamp.id)}>Eliminar Bootcamp</button>
-          <button className='blue-grey3 black-text' onClick={() => navigate(`/bootcamp-form`, { state: { bootcamp } })}>Editar Bootcamp</button>
-          </nav>
-        </article>
-          ))}
-      
-    </main >
+            <nav>
+              <button className='blue-grey3 black-text' onClick={() => handleDeleteBootcamp(bootcamp.id)}>Eliminar Bootcamp</button>
+              <button className='blue-grey3 black-text' onClick={() => navigate(`/bootcamp-form`, { state: { bootcamp } })}>Editar Bootcamp</button>
+            </nav>
+          </article>
+        ))}
+      </main>
     </>
   );
 };
