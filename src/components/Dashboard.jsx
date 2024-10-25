@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from './Peticiones/Request';
 import { useNavigate } from 'react-router-dom';
-import { MutatingDots } from 'react-loader-spinner'; // Importa el spinner
+import { MutatingDots } from 'react-loader-spinner'; //importamos el tipo de loader
+//https://mhnpd.github.io/react-loader-spinner/docs/category/components/
 
 const Dashboard = () => {
   const { getAllBootcamps, bootcamps, deactivateBootcamp, loginUser } = useAuth();
   const navigate = useNavigate();
-  const [token, setToken] = useState(null);
-  const [loading, setLoading] = useState(true); // Estado de carga
+  const [token, setToken] = useState(null); //verificamos lo del token
+  const [loading, setLoading] = useState(true); // proceso de carda
   const [error, setError] = useState(null); // Estado para manejar mensajes de error
 
+  //usamos datos quemados a remover en la version fnal
   const username = 'cheetos';
   const password = '123456789';
 
   useEffect(() => {
     const loginAndFetchBootcamps = async () => {
       try {
-        const response = await loginUser(username, password);
+        const response = await loginUser(username, password); //fingimos un logueo
         const token = response.token; 
-        setToken(token);
+        setToken(token);//asignamos a token
 
         if (token) {
           await getAllBootcamps(token);
         }
       } catch (error) {
         console.error('Error al iniciar sesión y obtener bootcamps:', error);
-        setError('No se pudo iniciar sesión. Por favor, verifica tus credenciales.'); // Establece el mensaje de error
+        setError('No se pudo iniciar sesión. Por favor, verifica tus credenciales.'); // establece el error mesage
       } finally {
         setLoading(false); // Cambia el estado de carga a false al final
       }
@@ -36,11 +38,12 @@ const Dashboard = () => {
 
   const handleDeleteBootcamp = async (id) => {
     if (window.confirm('¿Estás seguro de que deseas eliminar este bootcamp?')) {
-      await deactivateBootcamp(token, id);
+      await deactivateBootcamp(token, id); //el tken pa borrar
     }
   };
 
   if (loading) {
+    //lo del loader
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <MutatingDots color="#00BFFF" height={100} width={100} />
