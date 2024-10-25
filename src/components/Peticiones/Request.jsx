@@ -145,6 +145,7 @@ export const Request = ({ children }) => {
       }
 
       const data = await response.json();
+      //console.log('Respuesta de login:', data); //pal issue del cel
       return data; // Aquí puedes devolver el token que obtuviste
     } catch (error) {
       console.error('Error al iniciar sesión:', error);

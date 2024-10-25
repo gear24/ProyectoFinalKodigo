@@ -15,9 +15,12 @@ const cors = require('cors'); // Importar cors
 const authRoutes = require('./routes/auth');
 const app = express();
 
-app.use(cors({
-    origin: 'http://localhost:5173' // Permitir solo este origen
-}));
+//no me permite acceder a host por parte de npm
+// app.use(cors({
+//     origin: 'http://localhost:5173' // Permitir solo este origen
+// }));
+
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
