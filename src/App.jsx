@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Request } from './components/Peticiones/Request';
+import { Request } from './Services/Request';
 import Dashboard from './components/Dashboard';
-import BootcampForm from './components/BootcampForm'; 
+import BootcampForm from './Pages/Dashboard/BootcampForm';
 //importamos a beer
 import "beercss";
 import "material-dynamic-colors";

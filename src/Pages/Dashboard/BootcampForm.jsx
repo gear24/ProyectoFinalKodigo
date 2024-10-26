@@ -1,15 +1,14 @@
-// BootcampForm.js
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
-import { useAuth } from './Peticiones/Request';
+import { useAuth } from '../../Services/Request';
 
 const BootcampForm = () => {
   const location = useLocation();
   const bootcampToEdit = location.state?.bootcamp; // se toma el bootcamp desde el estado
   const { register, handleSubmit, setValue } = useForm();
   const { createBootcamp, updateBootcamp, goBack } = useAuth();
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJjaGVldG9zIiwiaWF0IjoxNzI5ODMxNTcwLCJleHAiOjE3Mjk4MzUxNzB9.ykaoRUCRGYlAU0IqD0qA76ySN5MnYOva2yHiEPktqiI';
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     if (bootcampToEdit) {
@@ -29,15 +28,9 @@ const BootcampForm = () => {
 
   return (
     <>
-      <main className="responsive">
-        
-        <article className="  center-align blue-grey10 
-">
-        
-
-        <article className="border blue-grey-border
-
-">
+      <main className="responsive">        
+        <article className="  center-align blue-grey10 ">
+        <article className="border blue-grey-border">
           <div>
             <div className="max">
             {bootcampToEdit ? 

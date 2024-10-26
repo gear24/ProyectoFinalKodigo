@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth } from './Peticiones/Request';
+import { useAuth } from '../Services/Request';
 import { useNavigate } from 'react-router-dom';
 import { MutatingDots } from 'react-loader-spinner'; // Importamos el tipo de loader
+import HeaderNav from '../MicroComponents/HeaderNav';
 
 const Dashboard = () => {
   const { getAllBootcamps, bootcamps, deactivateBootcamp, getDashboardData } = useAuth();
@@ -11,6 +12,12 @@ const Dashboard = () => {
   const [loguedName, setLoguedName] = useState(''); // Estado para almacenar el nombre de usuario
 
   useEffect(() => {
+    //Guard clause para evitar el acceso sin token
+    if (!(localStorage.getItem('token'))) {
+      //navigate('/login');
+      console.log('neles pa');
+      return; // Termina el efecto si no hay token
+    }
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token'); // Obtiene el token del localStorage
@@ -58,19 +65,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <header className='blue-grey10'>
-        <nav>
-          <h6 className="max ">Bienvenido {loguedName}</h6>
-          <button className="small-round blue-grey2" onClick={() => navigate('/bootcamp-form')}>
-            <i>add</i>     
-            <div className="tooltip bottom">Agrega un nuevo bootcamp</div>       
-          </button>
-          <button className="small-round blue-grey2" onClick={() => navigate('/logout')}>
-            <i>logout</i>            
-            <div className="tooltip bottom">Cierra sesión</div>
-          </button>
-        </nav>
-      </header>
+      <HeaderNav loguedName={loguedName} />
       <main className="responsive">
         <article className="border blue-grey-border center-align middle-align blue-grey10">
           <div className="row">

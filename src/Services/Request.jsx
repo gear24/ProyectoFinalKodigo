@@ -129,52 +129,6 @@ export const Request = ({ children }) => {
 
   const goBack = (route) => navigate(`/${route}`);
 
-  // pa iniciar sesión
-  const loginUser = async (username, password) => {
-    try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Error al iniciar sesión');
-      }
-
-      const data = await response.json();
-      //console.log('Respuesta de login:', data); //pal issue del cel
-      return data; // Aquí puedes devolver el token que obtuviste
-    } catch (error) {
-      console.error('Error al iniciar sesión:', error);
-      setErrorMessage('Error al iniciar sesión.');
-    }
-  };
-
-  // pa registrar un usuario
-  const registerUser = async (username, password) => {
-    try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Error al registrarse');
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('Error al registrarse:', error);
-      setErrorMessage('Error al registrarse.');
-    }
-  };
 
   return (
     <AuthContext.Provider value={{ 
@@ -184,9 +138,7 @@ export const Request = ({ children }) => {
       createBootcamp, 
       updateBootcamp, 
       deactivateBootcamp, 
-      getDashboardData, 
-      loginUser, 
-      registerUser,
+      getDashboardData,       
       goBack
     }}>        
       {children}
