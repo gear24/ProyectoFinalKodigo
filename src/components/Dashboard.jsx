@@ -13,14 +13,14 @@ const Dashboard = () => {
 
   useEffect(() => {
     //Guard clause para evitar el acceso sin token
-    if (!(localStorage.getItem('token'))) {
-      //navigate('/login');
-      console.log('neles pa');
-      return; // Termina el efecto si no hay token
+    if (localStorage.getItem('jwt') == null || localStorage.getItem('jwt') == '') {
+      localStorage.clear();
+      navigate('/login');
+      // return; // Termina el efecto si no hay token
     }
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem('token'); // Obtiene el token del localStorage
+        const token = localStorage.getItem('jwt'); // Obtiene el token del localStorage
         if (token) { // Solo procede si hay un token
           await getAllBootcamps(token); // Obtiene los bootcamps con el token proporcionado
           const dashboardData = await getDashboardData(token); // Obtenemos datos del dashboard
@@ -42,7 +42,7 @@ const Dashboard = () => {
   }, [getAllBootcamps, getDashboardData]);
 
   const handleDeleteBootcamp = async (id) => {
-    const token = localStorage.getItem('token'); // Obtiene el token antes de realizar la acción
+    const token = localStorage.getItem('jwt'); // Obtiene el token antes de realizar la acción
     if (token && window.confirm('¿Estás seguro de que deseas eliminar este bootcamp?')) {
       await deactivateBootcamp(token, id); // Usa el token para desactivar el bootcamp
     } else {

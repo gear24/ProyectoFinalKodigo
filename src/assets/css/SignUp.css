@@ -1,0 +1,139 @@
+:root {
+    --first-color: #263238;
+    --white-color: #fff;
+    --text-color: #000;
+    --gray-text-color: gray;
+}
+
+.signup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: hsla(230, 75%, 15%, .1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(24px);
+    /* For safari */
+    padding: 8rem 1.5rem 0;
+    opacity: 1;
+    z-index: 1000;
+  }
+  
+  .signup__close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.5rem;
+    color: var(--white-color);
+    cursor: pointer;
+  }
+  
+  .signup__form,
+  .signup__group {
+    display: grid;
+  }
+  
+  .signup__form {
+    background-color: var(--white-color);
+    padding: 2rem 1.5rem 2.5rem;
+    box-shadow: 0 8px 32px hsla(230, 75%, 15%, .2);
+    border-radius: 1rem;
+    row-gap: 1.25rem;
+    text-align: center;
+    transform: translateY(-1rem);
+    transition: transform .4s;
+  }
+  
+  .signup__title {
+    font-size: var(--h2-font-size);
+    color: var(--text-color);
+  }
+  
+  .signup__group {
+    row-gap: 1rem;
+  }
+  
+  .signup__label {
+    display: block;
+    text-align: initial;
+    color: var(--text-color);
+    font-weight: var(--font-medium);
+    margin-bottom: .25rem;
+  }
+  
+  .signup__input {
+    width: 100%;
+    border: 2px solid var(--first-color);
+    padding: .8rem;
+    border-radius: .5rem;
+    color: var(--text-color);
+  }
+  
+  .signup__input::placeholder {
+    color: var(--text-color);
+  }
+  
+  .signup__login {
+    color: var(--gray-text-color);
+    margin-bottom: 1rem;
+  }
+  
+  .signup__login a {
+    color: var(--first-color);
+    cursor: pointer;
+  }
+  
+  .signup__forgot {
+    display: inline-block;
+    color: var(--first-color);
+    margin-bottom: 1.25rem;
+  }
+  
+  .signup__button {
+    background-color: var(--first-color);
+    width: 90%;
+    color: var(--white-color);
+    padding: .5rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: box-shadow .4s;
+  }
+  
+  /* Show signup */
+  .show-signup {
+    opacity: 1;
+    pointer-events: initial;
+  }
+  
+  .show-signup .signup__form {
+    transform: translateY(0);
+  }
+  
+  /* For large devices */
+  @media screen and (min-width: 1023px) {
+    .signup__form {
+      padding: 3rem 2rem 3.5rem;
+    }
+  }
+  
+  /* For medium devices */
+  @media screen and (min-width: 576px) {
+    .signup {
+      padding-top: 10rem;
+    }
+  
+    .signup__close {
+      width: max-content;
+      top: 5rem;
+      left: 0;
+      right: 0;
+      margin-inline: auto;
+      font-size: 2rem;
+    }
+  
+    .signup__form {
+      max-width: 400px;
+      margin-inline: auto;
+    }
+  }

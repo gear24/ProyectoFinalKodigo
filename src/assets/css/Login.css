@@ -1,0 +1,111 @@
+:root {
+    --first-color: #263238;
+    --white-color: #fff;
+    --text-color: #000;
+    --gray-text-color: gray;
+}
+
+.login {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: hsla(230, 75%, 15%, .1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(24px);
+    /* For safari */
+    padding: 8rem 1.5rem 0;
+    opacity: 1;
+    transition: opacity .4s;
+    z-index: 1000;
+}
+
+.login__form,
+.login__group {
+    display: grid;
+}
+
+.login__form {
+    background-color: var(--white-color);
+    padding: 2rem 1.5rem 2.5rem;
+    box-shadow: 0 8px 32px hsla(230, 75%, 15%, .2);
+    border-radius: 1rem;
+    row-gap: 1.25rem;
+    text-align: center;
+
+    transition: transform .4s;
+}
+
+.login__title {
+    font-size: var(--h2-font-size);
+    color: var(--text-color);
+}
+
+.login__group {
+    row-gap: 1rem;
+}
+
+.login__label {
+    display: block;
+    text-align: initial;
+    color: var(--text-color);
+    font-weight: var(--font-medium);
+    margin-bottom: .25rem;
+}
+
+.login__input {
+    width: 100%;
+    border: 2px solid var(--first-color);
+    padding: .8rem;
+    border-radius: .5rem;
+    color: var(--text-color);
+}
+
+.login__input::placeholder {
+    color: var(--text-color);
+}
+
+.login__signup {
+    margin-bottom: 1rem;
+    color: var(--gray-text-color);
+}
+
+.login__signup a {
+    color: var(--first-color);
+    cursor: pointer;
+}
+
+.login__forgot {
+    color: var(--first-color);
+    margin-bottom: 1.25rem;
+}
+
+.login__button {
+    background-color: var(--first-color);
+    width: 90%;
+    color: var(--white-color);
+    padding: .5rem;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+
+/* For large devices */
+@media screen and (min-width: 1023px) {
+    .login__form {
+        padding: 3rem 2rem 3.5rem;
+    }
+}
+
+/* For medium devices */
+@media screen and (min-width: 576px) {
+    .login {
+        padding-top: 10rem;
+    }
+
+    .login__form {
+        max-width: 400px;
+        margin-inline: auto;
+    }
+}

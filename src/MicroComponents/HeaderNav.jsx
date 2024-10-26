@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 const HeaderNav = ({ loguedName }) => {
   const navigate = useNavigate();
 
+  function logOut(){
+    localStorage.clear();
+    navigate('/login');
+  }
   return (
     <header className='blue-grey10'>
       <nav>
@@ -12,7 +16,7 @@ const HeaderNav = ({ loguedName }) => {
           <i>add</i>
           <div className="tooltip bottom">Agrega un nuevo bootcamp</div>
         </button>
-        <button className="small-round blue-grey2" onClick={() => navigate('/logout')}>
+        <button className="small-round blue-grey2" onClick={() => logOut()}>
           <i>logout</i>
           <div className="tooltip bottom">Cierra sesión</div>
         </button>

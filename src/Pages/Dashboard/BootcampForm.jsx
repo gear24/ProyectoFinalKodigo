@@ -8,7 +8,7 @@ const BootcampForm = () => {
   const bootcampToEdit = location.state?.bootcamp; // se toma el bootcamp desde el estado
   const { register, handleSubmit, setValue } = useForm();
   const { createBootcamp, updateBootcamp, goBack } = useAuth();
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('jwt');
 
   useEffect(() => {
     if (bootcampToEdit) {
