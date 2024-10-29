@@ -1,0 +1,106 @@
+.hero {
+   background: linear-gradient(135deg, #6200ee 0%, #3700b3 100%);
+   color: white;
+   padding: 4rem 1rem; /* Reduce el padding en pantallas más pequeñas */
+}
+
+.container {
+   max-width: 1200px; /* Incrementa el ancho máximo para pantallas grandes */
+   margin: 0 auto;
+   display: grid;
+   grid-template-columns: 1fr;
+   gap: 2rem;
+}
+
+.content {
+   display: flex;
+   flex-direction: column;
+   gap: 1.5rem;
+}
+
+.title {
+   font-size: 2rem; /* Ajusta el tamaño del título para pantallas pequeñas */
+   font-weight: bold;
+   line-height: 1.2;
+}
+
+.subtitle {
+   font-size: 1.25rem;
+   max-width: 600px;
+}
+
+.searchBar {
+   display: flex;
+   max-width: 100%;
+   background-color: white;
+   border-radius: 9999px;
+   overflow: hidden;
+}
+
+.searchInput {
+   flex-grow: 1;
+   border: none;
+   padding: 0.75rem 1rem; /* Reduce el padding para pantallas pequeñas */
+   font-size: 1rem;
+   outline: none;
+}
+
+.searchButton {
+   background-color: #ff00ff;
+   color: white;
+   border: none;
+   padding: 0.75rem 1.5rem;
+   font-size: 1rem;
+   font-weight: bold;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+}
+
+.searchButton:hover {
+   background-color: #e600e6;
+}
+
+.images {
+   display: grid;
+   grid-template-columns: 1fr;
+   gap: 1rem;
+}
+
+.image {
+   border-radius: 0.5rem;
+   object-fit: cover;
+   width: 100%; /* Haz que las imágenes ocupen el 100% del ancho disponible */
+   height: auto; /* Ajusta la altura automáticamente */
+}
+
+@media (min-width: 768px) {
+   .container {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+   }
+
+   .title {
+      font-size: 3rem;
+   }
+
+   .subtitle {
+      font-size: 1.5rem;
+   }
+
+   .images {
+      grid-template-columns: 1fr 1fr;
+   }
+}
+
+@media (min-width: 1024px) {
+   .title {
+      font-size: 3.5rem;
+   }
+
+   .image {
+      width: 100%; /* Permite que las imágenes se adapten dentro de su contenedor */
+      height: auto;
+   }
+}

@@ -1,0 +1,150 @@
+.footer {
+   background-color: #4a0082;
+   color: white;
+   padding: 4rem 2rem;
+}
+
+.container {
+   max-width: 1200px;
+   width: 100%;
+   margin: 0 auto;
+}
+
+.newsletter {
+   margin-bottom: 3rem;
+}
+
+.newsletterTitle {
+   font-size: 1.5rem;
+   font-weight: bold;
+   margin-bottom: 0.5rem;
+}
+
+.newsletterDescription {
+   margin-bottom: 1rem;
+}
+
+.newsletterForm {
+   display: flex;
+   gap: 1rem;
+}
+
+.newsletterInput {
+   flex-grow: 1;
+   padding: 0.75rem;
+   border: none;
+   border-radius: 4px;
+}
+
+.newsletterButton {
+   background-color: #00ffff;
+   color: #4a0082;
+   border: none;
+   padding: 0.75rem 2rem;
+   border-radius: 4px;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+.linksContainer {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 3rem;
+   flex-wrap: wrap;
+}
+
+.linkColumn {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+   min-width: 200px;
+   margin-bottom: 1rem;
+}
+
+.linkColumn h3 {
+   font-size: 1.2rem;
+   margin-bottom: 1rem;
+}
+
+.linkColumn a {
+   color: white;
+   text-decoration: none;
+   margin-bottom: 0.5rem;
+}
+
+.kodigoLogo {
+   height: 24px;
+}
+
+.bidLabLogo {
+   height: 24px;
+}
+
+.copyright {
+   text-align: center;
+}
+
+@media (max-width: 1024px) {
+   .container {
+      max-width: 100%;
+   }
+
+   .linksContainer {
+      justify-content: flex-start;
+      gap: 2rem;
+   }
+}
+
+@media (max-width: 768px) {
+   .footer {
+      padding: 3rem 1.5rem;
+   }
+
+   .newsletterForm {
+      flex-direction: column;
+   }
+   .newsletterInput {
+      width: 100%;
+   }
+   .newsletterButton {
+      width: 85%;
+   }
+
+   .linksContainer {
+      flex-direction: column;
+      gap: 2rem;
+   }
+
+   .linkColumn {
+      min-width: 100%;
+   }
+}
+
+@media (max-width: 480px) {
+   .footer {
+      padding: 2rem 1rem;
+   }
+
+   .newsletterTitle {
+      font-size: 1.3rem;
+   }
+
+   .newsletterDescription {
+      font-size: 0.9rem;
+   }
+
+   .newsletterInput {
+      width: 100%;
+   }
+   .newsletterButton {
+      width: 80%;
+   }
+
+   .linkColumn h3 {
+      font-size: 1.1rem;
+   }
+
+   .linkColumn a {
+      font-size: 0.9rem;
+   }
+}

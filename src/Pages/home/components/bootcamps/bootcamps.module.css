@@ -1,0 +1,139 @@
+.bootcamps {
+   background: linear-gradient(135deg, #6200ee 0%, #03a9f4 100%);
+   padding: 4rem 6rem;
+   color: white;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+}
+
+.carouselContainer {
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   max-width: 100%;
+   overflow: hidden;
+   width: 100%;
+}
+
+.carouselButton {
+   background: none;
+   border: none;
+   color: white;
+   font-size: 2rem;
+   cursor: pointer;
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   z-index: 1;
+}
+
+.carouselButton.left {
+   left: 10px;
+}
+
+.carouselButton.right {
+   right: 10px;
+}
+
+.carouselTrack {
+   display: flex;
+   transition: transform 0.3s ease;
+   gap: 20px;
+}
+
+.bootcampCard {
+   background-color: white;
+   border-radius: 1rem;
+   padding: 2rem;
+   color: #333;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   min-width: 300px;
+   max-width: 300px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+}
+
+.bootcampCard h2 {
+   font-size: 1.5rem;
+   margin-bottom: 0.5rem;
+}
+
+.bootcampCard p {
+   font-size: 0.9rem;
+   margin: 0.3rem 0;
+}
+
+.enrollButton {
+   background-color: #7a1cfa;
+   color: white;
+   padding: 0.5rem 1.5rem;
+   border-radius: 20px;
+   font-weight: bold;
+   margin-top: 1rem;
+   text-decoration: none;
+}
+
+/* Media Queries para hacer el componente responsive */
+
+@media screen and (max-width: 1024px) {
+   .bootcamps {
+      padding: 3rem 4rem;
+   }
+
+   .bootcampCard {
+      min-width: 250px;
+      max-width: 250px;
+   }
+}
+
+@media screen and (max-width: 768px) {
+   .bootcamps {
+      padding: 2rem 3rem;
+   }
+
+   .bootcampCard {
+      min-width: 220px;
+      max-width: 220px;
+      padding: 1.5rem;
+   }
+
+   .bootcampCard h2 {
+      font-size: 1.3rem;
+   }
+
+   .bootcampCard p {
+      font-size: 0.8rem;
+   }
+}
+
+@media screen and (max-width: 480px) {
+   .bootcamps {
+      padding: 2rem 1rem;
+   }
+
+   .carouselContainer {
+      width: calc(100% - 60px);
+      margin: 0 auto;
+   }
+
+   .bootcampCard {
+      min-width: 33%;
+      max-width: 100%;
+   }
+
+   .carouselButton {
+      font-size: 1.5rem;
+   }
+
+   .carouselButton.left {
+      left: 5px;
+   }
+
+   .carouselButton.right {
+      right: 5px;
+   }
+}
