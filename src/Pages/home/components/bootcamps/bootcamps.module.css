@@ -1,17 +1,20 @@
 .bootcamps {
    background: linear-gradient(135deg, #6200ee 0%, #03a9f4 100%);
-   padding: 4rem 2rem;
+   padding: 4rem 6rem;
    color: white;
-   overflow: hidden; /* Agregar para evitar desbordamiento horizontal */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
 }
 
 .carouselContainer {
    display: flex;
    align-items: center;
    justify-content: flex-start;
-   position: relative; /* Para ajustar la posición de los botones */
-   max-width: 100%; /* Limitar ancho en pantallas pequeñas */
-   overflow: hidden; /* Evitar desbordamiento horizontal */
+   max-width: 100%;
+   overflow: hidden;
+   width: 100%;
 }
 
 .carouselButton {
@@ -20,54 +23,117 @@
    color: white;
    font-size: 2rem;
    cursor: pointer;
-   padding: 0 1rem;
-   position: absolute; /* Para que se coloquen a los lados del contenedor */
+   position: absolute;
    top: 50%;
    transform: translateY(-50%);
    z-index: 1;
 }
 
-.carouselButton:first-child {
-   left: 0; /* Botón izquierdo */
+.carouselButton.left {
+   left: 10px;
 }
 
-.carouselButton:last-child {
-   right: 0; /* Botón derecho */
+.carouselButton.right {
+   right: 10px;
 }
 
 .carouselTrack {
    display: flex;
    transition: transform 0.3s ease;
-   width: 100%;
-   max-width: 400px; /* Limitar el tamaño en pantallas grandes */
-   gap: 30px;
+   gap: 20px;
 }
 
 .bootcampCard {
-   flex: 0 0 100%;
    background-color: white;
    border-radius: 1rem;
    padding: 2rem;
    color: #333;
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-   min-width: 100%; /* Para que cada tarjeta ocupe el 100% del ancho del track */
-   box-sizing: border-box; /* Para incluir el padding dentro del ancho */
+   min-width: 300px;
+   max-width: 300px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
 }
 
-@media (max-width: 768px) {
+.bootcampCard h2 {
+   font-size: 1.5rem;
+   margin-bottom: 0.5rem;
+}
+
+.bootcampCard p {
+   font-size: 0.9rem;
+   margin: 0.3rem 0;
+}
+
+.enrollButton {
+   background-color: #7a1cfa;
+   color: white;
+   padding: 0.5rem 1.5rem;
+   border-radius: 20px;
+   font-weight: bold;
+   margin-top: 1rem;
+   text-decoration: none;
+}
+
+/* Media Queries para hacer el componente responsive */
+
+@media screen and (max-width: 1024px) {
    .bootcamps {
-      padding: 3rem 1rem;
+      padding: 3rem 4rem;
    }
 
-   .title {
-      font-size: 2rem;
+   .bootcampCard {
+      min-width: 250px;
+      max-width: 250px;
+   }
+}
+
+@media screen and (max-width: 768px) {
+   .bootcamps {
+      padding: 2rem 3rem;
    }
 
-   .subtitle {
-      font-size: 1rem;
+   .bootcampCard {
+      min-width: 220px;
+      max-width: 220px;
+      padding: 1.5rem;
    }
 
-   .carouselTrack {
-      max-width: 300px;
+   .bootcampCard h2 {
+      font-size: 1.3rem;
+   }
+
+   .bootcampCard p {
+      font-size: 0.8rem;
+   }
+}
+
+@media screen and (max-width: 480px) {
+   .bootcamps {
+      padding: 2rem 1rem;
+   }
+
+   .carouselContainer {
+      width: calc(100% - 60px);
+      margin: 0 auto;
+   }
+
+   .bootcampCard {
+      min-width: 33%;
+      max-width: 100%;
+   }
+
+   .carouselButton {
+      font-size: 1.5rem;
+   }
+
+   .carouselButton.left {
+      left: 5px;
+   }
+
+   .carouselButton.right {
+      right: 5px;
    }
 }

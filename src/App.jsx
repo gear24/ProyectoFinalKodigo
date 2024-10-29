@@ -14,6 +14,7 @@ import "material-dynamic-colors";
 import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/SignUp/SignUp";
 import { Home } from "./Pages/home/Home";
+import Bootcamps from "./Pages/home/components/bootcamps/Bootcamps";
 
 const App = () => {
    return (
@@ -24,6 +25,7 @@ const App = () => {
             {/* definimos rutas */}
             <Routes>
                <Route path="/*" element={<Navigate to="/home" replace />} />
+               <Route path="/bootcamps" element={<Bootcamps />} />
                <Route path="/home" element={<Home />} />
                <Route path="/dashboard" element={<Dashboard />} />
                <Route path="/bootcamp-form" element={<BootcampForm />} />

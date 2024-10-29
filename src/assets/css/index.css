@@ -168,10 +168,6 @@ body {
 
 /* Responsive styles */
 @media (max-width: 768px) {
-   .header nav {
-      display: none;
-   }
-
    .stats .container {
       flex-direction: column;
       gap: 2rem;

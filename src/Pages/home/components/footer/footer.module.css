@@ -5,7 +5,8 @@
 }
 
 .container {
-   min-width: 800px;
+   max-width: 1200px;
+   width: 100%;
    margin: 0 auto;
 }
 
@@ -84,6 +85,10 @@
 }
 
 @media (max-width: 1024px) {
+   .container {
+      max-width: 100%;
+   }
+
    .linksContainer {
       justify-content: flex-start;
       gap: 2rem;
@@ -98,10 +103,11 @@
    .newsletterForm {
       flex-direction: column;
    }
-
-   .newsletterInput,
-   .newsletterButton {
+   .newsletterInput {
       width: 100%;
+   }
+   .newsletterButton {
+      width: 85%;
    }
 
    .linksContainer {
@@ -125,6 +131,13 @@
 
    .newsletterDescription {
       font-size: 0.9rem;
+   }
+
+   .newsletterInput {
+      width: 100%;
+   }
+   .newsletterButton {
+      width: 80%;
    }
 
    .linkColumn h3 {

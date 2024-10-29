@@ -1,4 +1,3 @@
-import { Facebook, Instagram, Youtube, Linkedin, Phone } from "lucide-react";
 import styles from "./Footer.module.css";
 
 export const Footer = () => {
