@@ -1,0 +1,73 @@
+.bootcamps {
+   background: linear-gradient(135deg, #6200ee 0%, #03a9f4 100%);
+   padding: 4rem 2rem;
+   color: white;
+   overflow: hidden; /* Agregar para evitar desbordamiento horizontal */
+}
+
+.carouselContainer {
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   position: relative; /* Para ajustar la posición de los botones */
+   max-width: 100%; /* Limitar ancho en pantallas pequeñas */
+   overflow: hidden; /* Evitar desbordamiento horizontal */
+}
+
+.carouselButton {
+   background: none;
+   border: none;
+   color: white;
+   font-size: 2rem;
+   cursor: pointer;
+   padding: 0 1rem;
+   position: absolute; /* Para que se coloquen a los lados del contenedor */
+   top: 50%;
+   transform: translateY(-50%);
+   z-index: 1;
+}
+
+.carouselButton:first-child {
+   left: 0; /* Botón izquierdo */
+}
+
+.carouselButton:last-child {
+   right: 0; /* Botón derecho */
+}
+
+.carouselTrack {
+   display: flex;
+   transition: transform 0.3s ease;
+   width: 100%;
+   max-width: 400px; /* Limitar el tamaño en pantallas grandes */
+   gap: 30px;
+}
+
+.bootcampCard {
+   flex: 0 0 100%;
+   background-color: white;
+   border-radius: 1rem;
+   padding: 2rem;
+   color: #333;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   min-width: 100%; /* Para que cada tarjeta ocupe el 100% del ancho del track */
+   box-sizing: border-box; /* Para incluir el padding dentro del ancho */
+}
+
+@media (max-width: 768px) {
+   .bootcamps {
+      padding: 3rem 1rem;
+   }
+
+   .title {
+      font-size: 2rem;
+   }
+
+   .subtitle {
+      font-size: 1rem;
+   }
+
+   .carouselTrack {
+      max-width: 300px;
+   }
+}
